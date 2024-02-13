@@ -1,0 +1,57 @@
+# CodeT5SmallCAPS Experiment Reproducing package
+
+- To run the pre-train objective use the following scripts:
+  
+  - Reproduce CodeT5SmallCAPS with all objectives:
+    
+    - Navigate the folder `Pre-training` containing the `CodeT5SmallCAPS.py` file
+    - Then, run `Python CodeT5SmallCAPS.py --train-tt --train-cs --train-pd`
+      
+      - The pretrained model is released on [hugging face](https://huggingface.co/CodeT5SmallCAPS/CAPS_pretrained), therefore it automatically loads.
+
+  - To run the ablation studies:
+    
+    - Ablation 1: `Python CodeT5SmallCAPS.py --train-tt`
+    - Ablation 2: `Python CodeT5SmallCAPS.py --train-tt --train-cs`
+    - Ablation 3: `Python CodeT5SmallCAPS.py --train-tt --train-cs --train-pd`
+
+- To `Fine-tuning` CodeT5SmallCAPS on downstream tasks:
+  
+  - Navigate to the `Fine-tuning` folder and then `Downstream task` folder:
+     
+    - Code Clone Detection:
+      - Follow the instruction of `readme.md` file.
+        
+    - Code Translation:
+      
+      - Run `setup.sh` file.
+      - Navigate to the `scripts/finetune` and run `translate.sh` file.
+
+- To extract the programming language features (i.e., `token type`, `code sememe`, and `code dependencies`)
+  - We used open source datasets to extract language features. we released the extracted datasets on the Hugging Face:
+    - `LT_Java` :  [CodeT5SmallCAPS/CAPS_Java](https://huggingface.co/datasets/CodeT5SmallCAPS/CAPS_Java)
+    - `LT_Python` :  [CodeT5SmallCAPS/CAPS_Python](https://huggingface.co/datasets/CodeT5SmallCAPS/CAPS_Python)
+    - `LT_Java_Dependency` :  [CodeT5SmallCAPS/CAPS_Java_Dependency](https://huggingface.co/datasets/CodeT5SmallCAPS/CAPS_Java_Dependency)
+
+  - Navigate to the utils directory:
+    - Use either the `Java` or `Python` notebook file to run over your dataset.
+    - Run the cells, for which, you want to extract the features.
+
+- Dependencies:
+  - Feature extraction dependencies:
+    ```bash
+    - pip install ast-comments
+    - pip install ast
+    - pip install javalang
+    - pip install tree-sitter
+    
+  - Model training dependencies:
+    ``` bash
+    - pip install transformers 
+    - pip install datasets
+    - pip install pytorch_lightning
+    - pip install torch
+
+  - Install the required packages:
+    ``` bash
+    - pip install -r requirements.txt
